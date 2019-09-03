@@ -9,5 +9,6 @@ const todoSchema = new Schema({
   }
 })
 
-// 匯出一個名為 'Todo' 的 model，而這個 model 是 todoSchema 這個實例
+// 匯出一個名為 'Todo' 的 model，而這個 model 是透過 mongoose.model 把 todoSchema這個實例 轉成 model，於是此 model 之後就可以被使用
 module.exports = mongoose.model('Todo', todoSchema)
+

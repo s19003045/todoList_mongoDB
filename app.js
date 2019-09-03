@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+
 // import mongoose & connect to mongodb
 const mongoose = require('mongoose')
 mongoose.connect('mongodb://localhost:27017/todo', { useNewUrlParser: true })
