@@ -2,6 +2,13 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+// import express-handlebars
+const exphbs = require('express-handlebars')
+
+// template engine setting
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
+
 
 // import mongoose & connect to mongodb
 const mongoose = require('mongoose')
@@ -25,7 +32,8 @@ const Todo = require('./models/todo')
 
 // route setting
 app.get('/', (req, res) => {
-  res.send('hello world. Who are you?')
+  // res.send('hello world. Who are you?')
+  res.render('index')
 })
 
 // 列出全部 Todo
