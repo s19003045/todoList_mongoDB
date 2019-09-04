@@ -1,12 +1,12 @@
 <h1>Todo List</h1>
 
-<a href="/todos/new"></a>
+<a href="/todos/new">create</a>
 
 <ul>
   {{#each todos}}
   <li>
     {{{this.name}}}
-    <a href="">view</a>
+    <a href="/todos/{{{this.id}}}">view</a>
     <a href="">edit</a>
     <button>delete</button>
   </li>

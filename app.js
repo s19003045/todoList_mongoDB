@@ -1,6 +1,8 @@
 const express = require('express')
 const app = express()
 const port = 3000
+
+// express 4.0 以上 已內建 body-parser 套件，所以可選擇性 npm install body-parser
 const bodyParser = require('body-parser')
 
 // import express-handlebars
@@ -51,29 +53,38 @@ app.get('/todos', (req, res) => {
 app.get('/todos/new', (req, res) => {
   // res.send('新增 Todo 頁面')
   res.render('new')
-
-
 })
+
 // 顯示一筆 Todo 的詳細內容
 app.get('/todos/:id', (req, res) => {
-  res.send('顯示 Todo 的詳細內容')
+
+  Todo.findById(req.params.id, (err, todo) => {
+    if (err) console.err(err)
+    return res.render('detail', { todo: todo })
+  })
+
 })
 
 // 新增一筆  Todo
 app.post('/todos', (req, res) => {
-  // 新增一個 Todo model 實例
-  const todo = new Todo({
-    name: req.body.name
-  })
-  console.log(todo)
-  // 將 todo 儲存至 資料庫
-  todo.save(err => {
-    if (err) return console.error(err)
+  // 以 document 的方法處理"新增""
+  // // 新增一個 Todo model 實例
+  // const todo = new Todo({
+  //   name: req.body.name
+  // })
 
-    // 重新導向回首頁
+  // // 將 todo 儲存至 資料庫
+  // todo.save(err => {
+  //   if (err) return console.error(err)
+  //   // 重新導向回首頁
+  //   return res.redirect('/')
+  // })
+
+  // 以 model 的方法處理"新增"：
+  Todo.create({ name: req.body.name }, (err, too) => {
+    if (err) return console.err(err)
     return res.redirect('/')
   })
-
 })
 // 修改 Todo 頁面
 app.get('/todos/:id/edit', (req, res) => {
