@@ -86,14 +86,29 @@ app.post('/todos', (req, res) => {
     return res.redirect('/')
   })
 })
+
 // 修改 Todo 頁面
 app.get('/todos/:id/edit', (req, res) => {
-  res.send('修改 Todo 頁面')
+
+  Todo.findById(req.params.id, (err, todo) => {
+    if (err) console.err(err)
+    return res.render('edit', { todo, todo })
+  })
 })
+
 // 修改 Todo
 app.post('/todos/:id/edit', (req, res) => {
-  res.send('修改 Todo')
+
+  Todo.findById(req.params.id, (err, todo) => {
+    if (err) console.error(err)
+    todo.name = req.body.name
+    todo.save(err => {
+      if (err) return console.error(err)
+      return res.redirect(`/todos/${todo.id}`)
+    })
+  })
 })
+
 // 刪除 Todo
 app.post('/todos/:id/delete', (req, res) => {
   res.send('刪除 Todo')
