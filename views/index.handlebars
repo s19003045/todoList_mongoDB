@@ -1,1 +1,14 @@
 <h1>Todo List</h1>
+
+<a href="/todos/new"></a>
+
+<ul>
+  {{#each todos}}
+  <li>
+    {{{this.name}}}
+    <a href="">view</a>
+    <a href="">edit</a>
+    <button>delete</button>
+  </li>
+  {{/each}}
+</ul>

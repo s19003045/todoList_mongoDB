@@ -32,14 +32,17 @@ const Todo = require('./models/todo')
 
 // route setting
 app.get('/', (req, res) => {
-  // res.send('hello world. Who are you?')
-  res.render('index')
+  Todo.find((error, todos) => {
+    if (error) return console.error(error)
+    return res.render('index', { todos: todos })
+  })
 })
 
 // 列出全部 Todo
 app.get('/todos', (req, res) => {
-  res.send('列出所有 Todo')
+  return res.redirect('/')
 })
+
 // 新增一筆 Todo 頁面
 app.get('/todos/new', (req, res) => {
   res.send('新增 Todo 頁面')
