@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
+const bodyParser = require('body-parser')
 
 // import express-handlebars
 const exphbs = require('express-handlebars')
@@ -8,6 +9,9 @@ const exphbs = require('express-handlebars')
 // template engine setting
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
+
+// bodyParser setting
+app.use(bodyParser.urlencoded({ extended: true }))
 
 
 // import mongoose & connect to mongodb
@@ -32,8 +36,8 @@ const Todo = require('./models/todo')
 
 // route setting
 app.get('/', (req, res) => {
-  Todo.find((error, todos) => {
-    if (error) return console.error(error)
+  Todo.find((err, todos) => {
+    if (err) return console.error(err)
     return res.render('index', { todos: todos })
   })
 })
@@ -45,15 +49,31 @@ app.get('/todos', (req, res) => {
 
 // 新增一筆 Todo 頁面
 app.get('/todos/new', (req, res) => {
-  res.send('新增 Todo 頁面')
+  // res.send('新增 Todo 頁面')
+  res.render('new')
+
+
 })
 // 顯示一筆 Todo 的詳細內容
 app.get('/todos/:id', (req, res) => {
   res.send('顯示 Todo 的詳細內容')
 })
+
 // 新增一筆  Todo
 app.post('/todos', (req, res) => {
-  res.send('建立 Todo')
+  // 新增一個 Todo model 實例
+  const todo = new Todo({
+    name: req.body.name
+  })
+  console.log(todo)
+  // 將 todo 儲存至 資料庫
+  todo.save(err => {
+    if (err) return console.error(err)
+
+    // 重新導向回首頁
+    return res.redirect('/')
+  })
+
 })
 // 修改 Todo 頁面
 app.get('/todos/:id/edit', (req, res) => {
