@@ -36,9 +36,10 @@ db.once('open', () => {
 const Todo = require('./models/todo')
 
 
-// route setting
+// --------------route setting--------------
+
 app.get('/', (req, res) => {
-  Todo.find((err, todos) => {
+  Todo.find({}).sort({ name: 'asc' }).exec((err, todos) => {
     if (err) return console.error(err)
     return res.render('index', { todos: todos })
   })
