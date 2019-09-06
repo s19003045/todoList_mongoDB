@@ -1,7 +1,7 @@
 <h4><input type="checkbox" name="done" id="done" {{#if todo.done}}checked{{/if}} disabled>{{{todo.name}}}</h4>
 
 <a href="/">back</a>
-<a href="/todos/{{{todo.id}}}/edit">edit</a>
-<form action="/todos/{{{todo.id}}}/delete" method="POST">
+<a href="/todos/{{{todo.id}}}/edit?_method=PUT">edit</a>
+<form action="/todos/{{{todo.id}}}/delete?_method=DELETE" method="POST">
   <button type="submit">delete</button>
 </form>
