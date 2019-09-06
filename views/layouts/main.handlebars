@@ -6,12 +6,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Todo List</title>
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+  <header>
+    <nav class="navbar navbar-dark bg-secondary">
+      <a href="/" class="navbar-brand">Todo List</a>
+      <a href="" class="btn btn-outline-light">Create</a>
+    </nav>
+  </header>
+  <main>
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-10">
+          {{{body}}}
+        </div>
 
+      </div>
 
-  {{{body}}}
+    </div>
+  </main>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
 </body>
 
 </html>

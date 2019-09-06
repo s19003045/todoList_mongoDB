@@ -8,6 +8,9 @@ const bodyParser = require('body-parser')
 // import express-handlebars
 const exphbs = require('express-handlebars')
 
+// static file setting
+app.use(express.static('public'))
+
 // template engine setting
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
