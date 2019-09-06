@@ -4,7 +4,9 @@
 
 <ul>
   {{#each todos}}
+
   <li>
+    <input type="checkbox" name="done" id="done" {{#if this.done}}checked{{/if}} disabled>
     {{{this.name}}}
     <a href="/todos/{{{this.id}}}">view</a>
     <a href="/todos/{{{this.id}}}/edit">edit</a>
