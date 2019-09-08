@@ -55,6 +55,8 @@ app.use('/', require('./routes/home'))
 
 app.use('/todos', require('./routes/todos'))
 
+// Users login/register/logout
+app.use('/users', require('./routes/users'))
 
 // server listen
 app.listen(port, () => {
