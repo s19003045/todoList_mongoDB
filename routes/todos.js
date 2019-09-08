@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 
 // 新增一筆 Todo 頁面
 router.get('/new', (req, res) => {
-  // res.send('新增 Todo 頁面')
+
   res.render('new')
 })
 
@@ -47,7 +47,6 @@ router.get('/:id', (req, res) => {
     if (err) return console.err(err)
     return res.render('detail', { todo: todo })
   })
-
 })
 
 

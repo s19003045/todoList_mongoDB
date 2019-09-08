@@ -1,0 +1,31 @@
+<form action="/restaurants/{{{restaurant.id}}}/edit" method="POST" class="mb-4">
+  {{ #each restaurantObj }}
+  <div class="form-group row">
+    <label for="{{@key}}">
+      <span class="text-secondary">
+        {{{this.fontAwesome}}}{{ this.title }}：
+      </span>
+
+      <span class="input-required">
+        {{ this.tag }}
+      </span></label>
+    <div class="col-10 ml-auto">
+      <input type="text" class="form-control" id="" placeholder="" value="" name="{{@key}}"
+        {{#if this.required}}required{{/if}}>
+      <small id="" class="form-text text-muted">{{ this.hint }}</small>
+      <span>
+        {{{checkInputName restaurant.name}}}
+      </span>
+    </div>
+  </div>
+  {{/each}}
+
+
+  <p class="mb-4">
+    <span class="text-secondary">
+      {{ restaurantObj.name.title }}：
+    </span>
+    <input type="text" value="{{restaurant.name}}" name="{{restaurantObj.name.name}}">
+  </p>
+
+</form>

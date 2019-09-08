@@ -1,7 +1,15 @@
-<h4><input type="checkbox" name="done" id="done" {{#if todo.done}}checked{{/if}} disabled>{{{todo.name}}}</h4>
-
-<a href="/">back</a>
-<a href="/todos/{{{todo.id}}}/edit?_method=PUT">edit</a>
 <form action="/todos/{{{todo.id}}}/delete?_method=DELETE" method="POST">
-  <button type="submit">delete</button>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <input class="d-inline align-middle" type="checkbox" name="done" id="done" {{#if this.done}}checked{{/if}}
+          disabled>
+      </div>
+    </div>
+    <input type="text" class="form-control" value="{{{todo.name}}}" disabled>
+    <div class="input-group-append">
+      <a class="btn btn-success" href="/todos/{{{todo.id}}}/edit?_method=PUT">edit</a>
+      <button class="btn btn-danger" type="submit">delete</button>
+    </div>
+  </div>
 </form>

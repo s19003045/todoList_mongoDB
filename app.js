@@ -51,7 +51,6 @@ const Todo = require('./models/todo')
 
 // --------------route setting--------------
 
-
 app.use('/', require('./routes/home'))
 
 app.use('/todos', require('./routes/todos'))
