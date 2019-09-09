@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const Todo = require('../models/todo')
+const User = require('../models/users')
 
 // login
 router.get('/login', (req, res) => {
@@ -20,7 +20,25 @@ router.get('/register', (req, res) => {
 
 // register submit
 router.post('/register', (req, res) => {
-  res.send('register submit')
+  const { name, email, password, password2 } = req.body
+
+  User.findOne({ email: email }).then(user => {
+    if (user) {
+      console.log('User already exists')
+      res.render('register', {
+        name, email, password, password2
+      })
+    } else {
+      const user = new User({ name: name, email: email, password })
+      user.save()
+        .then(user => {
+          res.redirect('/')
+        })
+        .catch(err => console.log(err))
+    }
+  })
+  // res.send('register submit')
+
 })
 
 // log out
