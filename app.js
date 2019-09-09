@@ -16,8 +16,12 @@ const db = mongoose.connection
 const Todo = require('./models/todo')
 // import express-session
 const session = require('express-session')
+// import passport
+const passport = require('passport')
+
 
 // static file setting
+// express.static 是 express 唯一內建的 middleware，用來提供靜態網頁資料
 app.use(express.static('public'))
 
 
@@ -43,6 +47,18 @@ app.use(session({
   saveUninitialized: true,
 }))
 
+// passport initialize：建立一個 passport 的實例
+app.use(passport.initialize())
+app.use(passport.session())
+
+// 載入 config 中的 passport.js
+// 把上面宣告的 passport 實例當成下面的參數
+require('./config/passport')(passport)
+
+app.use((req, res, next) => {
+  res.locals.user = req.user
+  next()
+})
 
 // 使用"連續"監聽器：listen to error
 db.on('error', () => {
