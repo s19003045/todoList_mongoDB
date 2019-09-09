@@ -20,12 +20,6 @@ const session = require('express-session')
 // static file setting
 app.use(express.static('public'))
 
-// set session
-app.use(session({
-  secret: 'hello world',
-  resave: false,
-  saveUninitialized: true,
-}))
 
 // template engine setting
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
@@ -42,6 +36,12 @@ app.use(methodOverride('_method'))
 // app.use('/',methodOverride('_method'))
 // app.use()裡的第一個參數 path 被省略，因為 path 的預設是 '/'，所以，會針對收到的每一個 request 執行。 
 
+// set session
+app.use(session({
+  secret: 'hello world',
+  resave: false,
+  saveUninitialized: true,
+}))
 
 
 // 使用"連續"監聽器：listen to error
