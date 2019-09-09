@@ -55,6 +55,7 @@ app.use(passport.session())
 // 把上面宣告的 passport 實例當成下面的參數
 require('./config/passport')(passport)
 
+// 登入後可以取得使用者的資訊方便我們在 view 裡面直接使用
 app.use((req, res, next) => {
   res.locals.user = req.user
   next()
@@ -85,3 +86,4 @@ app.use('/users', require('./routes/users'))
 app.listen(port, () => {
   console.log(`Express server listen to http://localhost:${port}`)
 })
+

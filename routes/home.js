@@ -6,8 +6,11 @@ const router = express.Router()
 // import mongoose Schema
 const Todo = require('../models/todo')
 
+// 載入 auth middleware 裡的 authenticated 方法
+const { authenticated } = require('../config/auth')
+
 // setting route for home page
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   Todo.find({})
     .sort({ name: 'asc' })
     .exec((err, todos) => {
