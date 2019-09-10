@@ -9,7 +9,7 @@ const exphbs = require('express-handlebars')
 const methodOverride = require('method-override')
 // import mongoose & connect to mongodb
 const mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost:27017/todo', { useNewUrlParser: true })
+mongoose.connect('mongodb://localhost:27017/todo', { useNewUrlParser: true, useCreateIndex: true })
 // 當 mongoose 與 mongodb 連線成功會獲得之 mongoose.connection 存成變數 db
 const db = mongoose.connection
 // import model "Todo"

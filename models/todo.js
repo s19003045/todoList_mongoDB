@@ -10,6 +10,12 @@ const todoSchema = new Schema({
   done: {
     type: Boolean,
     default: false
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'users',  //關聯 users collection
+    index: true,
+    required: true
   }
 })
 
