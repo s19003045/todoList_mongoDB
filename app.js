@@ -42,7 +42,7 @@ app.use(methodOverride('_method'))
 
 // set session
 app.use(session({
-  secret: 'hello world',
+  secret: 'hello world', //用來簽章 sessionID 的cookie, 可以是一secret字串或是多個secret組成的一個陣列
   resave: false,
   saveUninitialized: true,
 }))
